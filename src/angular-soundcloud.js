@@ -12,8 +12,8 @@ angular.module('SoundCloud', [])
     }
   })
   .constant('SoundCloudPopupDefaults', {
-    width : 456,
-    height : 510,
+    width: 456,
+    height: 510,
     location: 1,
     left: 200,
     top: 200,
@@ -68,7 +68,7 @@ angular.module('SoundCloud', [])
           return obj;
         }));
 
-    if('access_token' in queryParams) {
+    if ('access_token' in queryParams) {
       window.opener._soundCloudCallback(queryParams.access_token);
       window.close();
     }
@@ -135,7 +135,7 @@ angular.module('SoundCloud', [])
         params.redirect_uri = SoundCloudRedirectUri;
 
         options = angular.extend({}, SoundCloudPopupDefaults);
-        options.left = window.screenX + (window.outerWidth  - options.height)  / 2;
+        options.left = window.screenX + (window.outerWidth - options.height) / 2;
         options.right = window.screenY + (window.outerHeight - options.width) / 2;
 
         $log.debug('Creating window with params %o and options %o', params, options);
@@ -164,8 +164,8 @@ angular.module('SoundCloud', [])
        */
       this.me = function me() {
         return $http.get(SoundCloudAPIBase + '/me.json', {
-          params : {
-            oauth_token : SoundCloudSessionManager.accessToken
+          params: {
+            oauth_token: SoundCloudSessionManager.accessToken
           }
         })
           .then(mapResponse, SoundCloudSessionManager.disconnect);
@@ -175,7 +175,7 @@ angular.module('SoundCloud', [])
         return $http.get(SoundCloudAPIBase + '/tracks', {
           params: {
             user_id: userId,
-            client_id : soundCloudKey.getKey()
+            client_id: soundCloudKey.getKey()
           }
         }).then(mapResponse);
       };
@@ -187,7 +187,7 @@ angular.module('SoundCloud', [])
       this.fetchMetadata = function fetchMetadata(trackId) {
         return $http.get(SoundCloudAPIBase + '/tracks/' + trackId, {
           params: {
-            client_id : soundCloudKey.getKey()
+            client_id: soundCloudKey.getKey()
           }
         }).then(mapResponse);
       }
