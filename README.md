@@ -7,14 +7,13 @@ Because we could not get the Soundcloud SDK to work properly with Angular and ui
 
 Include the module like this:
 ```js
-angular.module('SoundCloud').constant('soundCloudKey', 'YOUR-SOUNDCLOUD-APP-ID');
 var module = angular.module('yourApp', ['SoundCloud']);
 ```
 
 Then you can use it in your module
 ```js
-module.controller('MycController', ['SoundCloudLogin', function(SoundCloudLogin) {
-	
+module.controller('MycController', ['SoundCloudLogin', function(SoundCloudLogin, soundCloudKey) {
+	soundCloudKey.setKey('YOUR-SOUNDCLOUD-APP-ID');
 	this.loginUsingSoundCloud = function() {
 		SoundCloudLogin.connect().then(function() {
 			// Connected!
