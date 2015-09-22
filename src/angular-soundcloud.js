@@ -171,13 +171,22 @@ angular.module('SoundCloud', [])
           .then(mapResponse, SoundCloudSessionManager.disconnect);
       };
 
-      this.fetchSongs = function(userId) {
+      this.fetchTracks = function(userId) {
         return $http.get(SoundCloudAPIBase + '/tracks', {
           params: {
             user_id: userId,
             client_id: soundCloudKey.getKey()
           }
         }).then(mapResponse);
+      };
+
+      this.importTracks = function(userId, downloadLink) {
+        return $http.get(downloadLink, {
+          params: {
+            user_id: userId,
+            client_id: soundCloudKey.getKey()
+          }
+        });
       };
       /**
        * Fetch metadata for a track that exists in SoundCloud.
