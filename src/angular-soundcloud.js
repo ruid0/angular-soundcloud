@@ -181,6 +181,7 @@ angular.module('SoundCloud', [])
       };
 
       this.importTracks = function(userId, downloadLink) {
+        downloadLink = downloadLink.replace('http://', 'https://');
         return $http.get(downloadLink, {
           params: {
             user_id: userId,
